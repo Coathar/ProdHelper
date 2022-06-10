@@ -39,7 +39,7 @@
             this.CameraNameTxt = new System.Windows.Forms.TextBox();
             this.SceneNameTxt = new System.Windows.Forms.TextBox();
             this.ServerLbl = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.SeperatorLbl = new System.Windows.Forms.Label();
             this.ServerTxt = new System.Windows.Forms.TextBox();
             this.SetServerBtn = new System.Windows.Forms.Button();
             this.StartBtn = new System.Windows.Forms.Button();
@@ -133,15 +133,14 @@
             this.ServerLbl.Size = new System.Drawing.Size(42, 15);
             this.ServerLbl.TabIndex = 9;
             this.ServerLbl.Text = "Server:";
-            this.ServerLbl.Click += new System.EventHandler(this.ServerLbl_Click);
             // 
-            // label3
+            // SeperatorLbl
             // 
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(178, 140);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(240, 2);
-            this.label3.TabIndex = 10;
+            this.SeperatorLbl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SeperatorLbl.Location = new System.Drawing.Point(178, 140);
+            this.SeperatorLbl.Name = "SeperatorLbl";
+            this.SeperatorLbl.Size = new System.Drawing.Size(240, 2);
+            this.SeperatorLbl.TabIndex = 10;
             // 
             // ServerTxt
             // 
@@ -178,7 +177,7 @@
             this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.SetServerBtn);
             this.Controls.Add(this.ServerTxt);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.SeperatorLbl);
             this.Controls.Add(this.ServerLbl);
             this.Controls.Add(this.SceneNameTxt);
             this.Controls.Add(this.CameraNameTxt);
@@ -208,7 +207,7 @@
         private TextBox CameraNameTxt;
         private TextBox SceneNameTxt;
         private Label ServerLbl;
-        private Label label3;
+        private Label SeperatorLbl;
         private TextBox ServerTxt;
         private Button SetServerBtn;
         private Button StartBtn;
