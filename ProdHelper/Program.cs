@@ -27,7 +27,7 @@
                             break;
                         case "x":
                             endApp = true;
-                            break;
+                            continue;
                         default:
                             Console.WriteLine("Invalid option, enter 'H' for help.");
                             continue;
@@ -45,6 +45,7 @@
         {
             Console.WriteLine("Options:");
             Console.WriteLine("1: Settings Util");
+            Console.WriteLine("2: Open OBS Tally Light Utility");
             Console.WriteLine("H: List this menu");
             Console.WriteLine("X: Close");
         }
