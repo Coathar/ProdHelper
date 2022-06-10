@@ -1,4 +1,6 @@
-﻿namespace ProdHelper
+﻿using System;
+
+namespace ProdHelper
 {
     public class Program
     {
@@ -27,7 +29,7 @@
                             break;
                         case "x":
                             endApp = true;
-                            break;
+                            continue;
                         default:
                             Console.WriteLine("Invalid option, enter 'H' for help.");
                             continue;
