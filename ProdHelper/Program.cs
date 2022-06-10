@@ -22,6 +22,10 @@
                         case "1":
                             SettingsFileUtil.Intitialize();
                             break;
+                        case "2":
+                            Console.WriteLine("Opening Production Client");
+                            new TallyLightProd().ShowDialog();
+                            break;
                         case "h":
                             ListOptions();
                             break;
@@ -45,7 +49,8 @@
         {
             Console.WriteLine("Options:");
             Console.WriteLine("1: Settings Util");
-            Console.WriteLine("2: Open OBS Tally Light Utility");
+            Console.WriteLine("2: Open OBS Tally Light Utility (Production/OBS Director)");
+            Console.WriteLine("3: Open OBS Tally Light Utility (Observer)");
             Console.WriteLine("H: List this menu");
             Console.WriteLine("X: Close");
         }
