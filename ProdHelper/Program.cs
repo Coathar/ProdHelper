@@ -1,6 +1,4 @@
-﻿
-
-namespace ProdHelper
+﻿namespace ProdHelper
 {
     public class Program
     {
@@ -32,8 +30,10 @@ namespace ProdHelper
                             break;
                         default:
                             Console.WriteLine("Invalid option, enter 'H' for help.");
-                            break;
+                            continue;
                     }
+
+                    ListOptions();
                 }
                 
             }

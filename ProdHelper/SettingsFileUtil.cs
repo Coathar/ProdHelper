@@ -88,6 +88,7 @@
                             File.Copy(selectedFile, settingsFolder + "\\Settings_v0.ini", true);
                             Console.WriteLine($"Loaded settings file {Path.GetFileName(selectedFile)}! Press any key to continue.");
                             Console.ReadKey();
+                            Console.Clear();
                             break;
                         }
                         catch (Exception)
