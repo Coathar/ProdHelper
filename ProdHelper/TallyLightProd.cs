@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OBSWebsocketDotNet;
+using OBSWebsocketDotNet.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,8 @@ namespace ProdHelper
     {
 
         public string Server { get; set; } = string.Empty;
+
+        protected OBSWebsocket obs;
 
         public TallyLightProd()
         {
@@ -77,6 +81,32 @@ namespace ProdHelper
         }
 
         private void StartBtn_Click(object sender, EventArgs e)
+        {
+            obs = new OBSWebsocket();
+
+            obs.Connected += onConnect;
+            obs.Disconnected += onDisconnect;
+            obs.SceneChanged += onSceneChanged;
+
+
+            obs.StreamStatus += onStreamData;
+        }
+
+        private void onConnect(object sender, EventArgs e)
+        {
+        }
+
+        private void onDisconnect(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onSceneChanged(OBSWebsocket sender, string newSceneName)
+        {
+
+        }
+
+        private void onStreamData(OBSWebsocket sender, StreamStatus data)
         {
 
         }
