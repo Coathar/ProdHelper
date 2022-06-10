@@ -4,7 +4,15 @@
     {
         public static void Intitialize()
         {
-            string settingsFolder = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\Documents\\Overwatch\\Settings";
+            string settingsFallback = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\Documents\\Overwatch\\Settings";
+            string? settingsFolder = Environment.GetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE);
+
+            if (string.IsNullOrEmpty(settingsFolder))
+            {
+                settingsFolder = settingsFallback;
+                Environment.SetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE, settingsFolder);
+            }
+
             string[] templateFiles = new string[0];
             string selectedFile = "";
 
@@ -19,6 +27,7 @@
                 if (!string.IsNullOrEmpty(input))
                 {
                     settingsFolder = input;
+                    Environment.SetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE, settingsFolder);
                 }
 
                 if (!Directory.Exists(settingsFolder))
