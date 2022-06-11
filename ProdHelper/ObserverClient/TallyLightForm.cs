@@ -58,7 +58,7 @@ namespace ProdHelper.ObserverClient
 
             FormBorderStyle = FormBorderStyle.None;
             BackColor = Color.LimeGreen;
-            //TransparencyKey = Color.LimeGreen;
+            TransparencyKey = Color.LimeGreen;
             Opacity = 1;
             TopLevel = true;
             TopMost = true;
