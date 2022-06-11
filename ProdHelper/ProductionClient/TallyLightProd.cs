@@ -26,13 +26,13 @@ namespace ProdHelper.ProductionClient
 
         private void TallyLightAddBtn_Click(object sender, EventArgs e)
         {
-            tallyLightCamBindingSource.Add(new TallyLightCam($"New Camera {tallyLightCamBindingSource.Count + 1}", ""));
-
-            TallyLightCam? selectedCam = TallyLightCamListBox.SelectedItem as TallyLightCam;
+            TallyLightCam toAdd = new TallyLightCam($"New Camera {tallyLightCamBindingSource.Count + 1}", "");
+            tallyLightCamBindingSource.Add(toAdd);
+            TallyLightCamListBox.SelectedIndex = tallyLightCamBindingSource.Count - 1;
 
             SendUpdate();
 
-            LoadCamInfo(selectedCam);
+            LoadCamInfo(toAdd);
 
             TallyLightCamListBox.Invalidate();
         }

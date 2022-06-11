@@ -24,7 +24,7 @@
     public enum CamState
     {
         Clear,
-        Active,
         Preview,
+        Active,
     }
 }
