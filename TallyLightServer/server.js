@@ -74,7 +74,10 @@ function sendCam(req, res)
         {
             if (element.CameraName === camName)
             {
-                state = element.State
+                if (element.State > state)
+                {
+                    state = element.State
+                }
             }
         });
 

@@ -93,7 +93,6 @@ namespace ProdHelper.ObserverClient
                 IntPtr ptr = targetProcess.MainWindowHandle;
                 Rect processRect = new Rect();
                 GetWindowRect(ptr, ref processRect);
-                
 
                 Left = processRect.Left;
                 Width = processRect.Right - processRect.Left;
