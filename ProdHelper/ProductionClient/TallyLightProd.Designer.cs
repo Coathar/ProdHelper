@@ -99,7 +99,8 @@
             // 
             // UpdateBtn
             // 
-            this.UpdateBtn.Location = new System.Drawing.Point(260, 89);
+            this.UpdateBtn.Enabled = false;
+            this.UpdateBtn.Location = new System.Drawing.Point(260, 92);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(146, 23);
             this.UpdateBtn.TabIndex = 5;
@@ -110,7 +111,7 @@
             // CameraNameLbl
             // 
             this.CameraNameLbl.AutoSize = true;
-            this.CameraNameLbl.Location = new System.Drawing.Point(212, 34);
+            this.CameraNameLbl.Location = new System.Drawing.Point(212, 37);
             this.CameraNameLbl.Name = "CameraNameLbl";
             this.CameraNameLbl.Size = new System.Drawing.Size(42, 15);
             this.CameraNameLbl.TabIndex = 99;
@@ -119,7 +120,7 @@
             // SceneNameLbl
             // 
             this.SceneNameLbl.AutoSize = true;
-            this.SceneNameLbl.Location = new System.Drawing.Point(178, 63);
+            this.SceneNameLbl.Location = new System.Drawing.Point(178, 66);
             this.SceneNameLbl.Name = "SceneNameLbl";
             this.SceneNameLbl.Size = new System.Drawing.Size(76, 15);
             this.SceneNameLbl.TabIndex = 99;
@@ -127,7 +128,8 @@
             // 
             // CameraNameTxt
             // 
-            this.CameraNameTxt.Location = new System.Drawing.Point(260, 31);
+            this.CameraNameTxt.Enabled = false;
+            this.CameraNameTxt.Location = new System.Drawing.Point(260, 34);
             this.CameraNameTxt.Name = "CameraNameTxt";
             this.CameraNameTxt.Size = new System.Drawing.Size(146, 23);
             this.CameraNameTxt.TabIndex = 3;
@@ -135,7 +137,7 @@
             // ServerLbl
             // 
             this.ServerLbl.AutoSize = true;
-            this.ServerLbl.Location = new System.Drawing.Point(210, 164);
+            this.ServerLbl.Location = new System.Drawing.Point(210, 167);
             this.ServerLbl.Name = "ServerLbl";
             this.ServerLbl.Size = new System.Drawing.Size(42, 15);
             this.ServerLbl.TabIndex = 9;
@@ -151,14 +153,14 @@
             // 
             // ServerTxt
             // 
-            this.ServerTxt.Location = new System.Drawing.Point(260, 161);
+            this.ServerTxt.Location = new System.Drawing.Point(260, 164);
             this.ServerTxt.Name = "ServerTxt";
             this.ServerTxt.Size = new System.Drawing.Size(122, 23);
             this.ServerTxt.TabIndex = 6;
             // 
             // SetServerBtn
             // 
-            this.SetServerBtn.Location = new System.Drawing.Point(258, 217);
+            this.SetServerBtn.Location = new System.Drawing.Point(258, 220);
             this.SetServerBtn.Name = "SetServerBtn";
             this.SetServerBtn.Size = new System.Drawing.Size(122, 23);
             this.SetServerBtn.TabIndex = 8;
@@ -169,7 +171,7 @@
             // StartBtn
             // 
             this.StartBtn.Enabled = false;
-            this.StartBtn.Location = new System.Drawing.Point(258, 246);
+            this.StartBtn.Location = new System.Drawing.Point(258, 249);
             this.StartBtn.Name = "StartBtn";
             this.StartBtn.Size = new System.Drawing.Size(122, 23);
             this.StartBtn.TabIndex = 9;
@@ -179,7 +181,7 @@
             // 
             // ProdNameTxt
             // 
-            this.ProdNameTxt.Location = new System.Drawing.Point(258, 190);
+            this.ProdNameTxt.Location = new System.Drawing.Point(260, 193);
             this.ProdNameTxt.Name = "ProdNameTxt";
             this.ProdNameTxt.Size = new System.Drawing.Size(122, 23);
             this.ProdNameTxt.TabIndex = 7;
@@ -187,7 +189,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 193);
+            this.label1.Location = new System.Drawing.Point(182, 196);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 15);
             this.label1.TabIndex = 15;
@@ -196,7 +198,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(192, 363);
+            this.label2.Location = new System.Drawing.Point(192, 368);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 15);
             this.label2.TabIndex = 21;
@@ -204,7 +206,7 @@
             // 
             // WebsocketPasswordTxt
             // 
-            this.WebsocketPasswordTxt.Location = new System.Drawing.Point(258, 358);
+            this.WebsocketPasswordTxt.Location = new System.Drawing.Point(258, 363);
             this.WebsocketPasswordTxt.Name = "WebsocketPasswordTxt";
             this.WebsocketPasswordTxt.PasswordChar = '*';
             this.WebsocketPasswordTxt.Size = new System.Drawing.Size(69, 23);
@@ -212,7 +214,7 @@
             // 
             // StartWebsocketBtn
             // 
-            this.StartWebsocketBtn.Location = new System.Drawing.Point(258, 387);
+            this.StartWebsocketBtn.Location = new System.Drawing.Point(258, 392);
             this.StartWebsocketBtn.Name = "StartWebsocketBtn";
             this.StartWebsocketBtn.Size = new System.Drawing.Size(122, 23);
             this.StartWebsocketBtn.TabIndex = 13;
@@ -222,7 +224,7 @@
             // 
             // WebsocketServerTxt
             // 
-            this.WebsocketServerTxt.Location = new System.Drawing.Point(258, 331);
+            this.WebsocketServerTxt.Location = new System.Drawing.Point(258, 336);
             this.WebsocketServerTxt.Name = "WebsocketServerTxt";
             this.WebsocketServerTxt.Size = new System.Drawing.Size(122, 23);
             this.WebsocketServerTxt.TabIndex = 10;
@@ -230,7 +232,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 334);
+            this.label3.Location = new System.Drawing.Point(210, 339);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 16;
@@ -277,7 +279,7 @@
             // ShowPasswordChk
             // 
             this.ShowPasswordChk.AutoSize = true;
-            this.ShowPasswordChk.Location = new System.Drawing.Point(333, 360);
+            this.ShowPasswordChk.Location = new System.Drawing.Point(333, 365);
             this.ShowPasswordChk.Name = "ShowPasswordChk";
             this.ShowPasswordChk.Size = new System.Drawing.Size(55, 19);
             this.ShowPasswordChk.TabIndex = 12;
@@ -287,8 +289,9 @@
             // 
             // SceneComboBox
             // 
+            this.SceneComboBox.Enabled = false;
             this.SceneComboBox.FormattingEnabled = true;
-            this.SceneComboBox.Location = new System.Drawing.Point(260, 60);
+            this.SceneComboBox.Location = new System.Drawing.Point(260, 63);
             this.SceneComboBox.Name = "SceneComboBox";
             this.SceneComboBox.Size = new System.Drawing.Size(146, 23);
             this.SceneComboBox.TabIndex = 4;
@@ -299,7 +302,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 437);
+            this.ClientSize = new System.Drawing.Size(436, 448);
             this.Controls.Add(this.SceneComboBox);
             this.Controls.Add(this.ShowPasswordChk);
             this.Controls.Add(this.label6);

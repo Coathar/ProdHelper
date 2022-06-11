@@ -23,6 +23,7 @@
 
     public enum CamState
     {
+        NotFound,
         Clear,
         Preview,
         Active,

@@ -78,11 +78,17 @@ namespace ProdHelper.ProductionClient
             {
                 CameraNameTxt.Text = selectedCam.CameraName;
                 SceneComboBox.Text = selectedCam.Scene;
+                CameraNameTxt.Enabled = true;
+                SceneComboBox.Enabled = true;
+                UpdateBtn.Enabled = true;
             }
             else
             {
                 CameraNameTxt.Text = string.Empty;
                 SceneComboBox.Text = string.Empty;
+                CameraNameTxt.Enabled = false;
+                SceneComboBox.Enabled = false;
+                UpdateBtn.Enabled = false;
             }
         }
 
@@ -161,30 +167,28 @@ namespace ProdHelper.ProductionClient
 
         private void onSceneChanged(OBSWebsocket sender, string newSceneName)
         {
-            foreach (TallyLightCam cam in tallyLightCamBindingSource)
+            if (sender.StudioModeEnabled())
             {
-                if (cam.Scene == sender.GetCurrentScene().Name)
+                foreach (TallyLightCam cam in tallyLightCamBindingSource)
                 {
-                    cam.State = CamState.Active;
+                    if (cam.Scene == sender.GetCurrentScene().Name)
+                    {
+                        cam.State = CamState.Active;
+                    }
+                    else if (cam.Scene == sender.GetPreviewScene().Name)
+                    {
+                        cam.State = CamState.Preview;
+                    }
+                    else
+                    {
+                        cam.State = CamState.Clear;
+                    }
                 }
-                else if (cam.Scene == sender.GetPreviewScene().Name)
-                {
-                    cam.State = CamState.Preview;
-                }
-                else
-                {
-                    cam.State = CamState.Clear;
-                }
+
+                SendUpdate();
+
+                TallyLightCamListBox.Invalidate();
             }
-
-            SendUpdate();
-
-            TallyLightCamListBox.Invalidate();
-        }
-
-        private void onStreamData(OBSWebsocket sender, StreamStatus data)
-        {
-
         }
 
         private void StartWebsocketBtn_Click(object sender, EventArgs e)
@@ -213,8 +217,6 @@ namespace ProdHelper.ProductionClient
                 obs.SceneChanged += onSceneChanged;
                 obs.PreviewSceneChanged += onSceneChanged;
 
-                obs.StreamStatus += onStreamData;
-
                 WebsocketServerTxt.Enabled = false;
                 WebsocketPasswordTxt.Enabled = false;
 
@@ -230,9 +232,6 @@ namespace ProdHelper.ProductionClient
                 obs.Disconnected -= onDisconnect;
                 obs.SceneChanged -= onSceneChanged;
                 obs.PreviewSceneChanged -= onSceneChanged;
-
-
-                obs.StreamStatus -= onStreamData;
             }
         }
 
@@ -253,6 +252,7 @@ namespace ProdHelper.ProductionClient
         private void TallyLightProd_Load(object sender, EventArgs e)
         {
             WebsocketServerTxt.Text = "ws://127.0.0.1:4444";
+            Application.EnableVisualStyles();
         }
 
         private void TallyLightCamListBox_DrawItem(object sender, DrawItemEventArgs e)

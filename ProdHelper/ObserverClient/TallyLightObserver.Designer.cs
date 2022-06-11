@@ -144,6 +144,7 @@
             this.Controls.Add(this.ApplyBtn);
             this.Name = "TallyLightObserver";
             this.Text = "Tally Light (Observer)";
+            this.Load += new System.EventHandler(this.TallyLightObserver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

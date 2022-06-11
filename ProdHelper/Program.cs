@@ -7,6 +7,8 @@ namespace ProdHelper
     {
         public static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+
             bool endApp = false;
 
             Console.WriteLine("ProdHelper Utility");

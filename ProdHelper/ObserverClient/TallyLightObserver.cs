@@ -192,6 +192,10 @@ namespace ProdHelper.ObserverClient
 
             tallyLightForm.UpdateForm(camState);
         }
-        
+
+        private void TallyLightObserver_Load(object sender, EventArgs e)
+        {
+            Application.EnableVisualStyles();
+        }
     }
 }

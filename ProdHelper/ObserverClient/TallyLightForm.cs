@@ -143,6 +143,10 @@ namespace ProdHelper.ObserverClient
                 case CamState.Active:
                     toReturn = Color.FromArgb(255, 0, 0);
                     break;
+                case CamState.NotFound:
+                    toReturn = Color.FromArgb(100, 100, 255);
+                    break;
+
             }
 
             return toReturn;
