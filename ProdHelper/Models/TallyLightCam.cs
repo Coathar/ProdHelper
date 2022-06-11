@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProdHelper
+﻿namespace ProdHelper.Models
 {
     public class TallyLightCam
     {
@@ -12,15 +6,25 @@ namespace ProdHelper
 
         public string Scene { get; set; }
 
+        public CamState State { get; set; }
+
         public TallyLightCam(string cameraName, string scene)
         {
             CameraName = cameraName;
             Scene = scene;
+            State = CamState.Clear;
         }
 
-        public static void Test()
+        public override string ToString()
         {
-
+            return $"{CameraName} - {Scene}";
         }
+    }
+
+    public enum CamState
+    {
+        Clear,
+        Active,
+        Preview,
     }
 }

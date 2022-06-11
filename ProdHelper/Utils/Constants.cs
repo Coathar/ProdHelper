@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProdHelper
+﻿namespace ProdHelper.Utils
 {
     public static class Constants
     {
         public static readonly string OW_SETTINGS_VARIABLE = "ProdHelper_OWSettingsFolder";
+
+        public static readonly string OBSERVER_NEW_WINDOW = "New Box Window";
     }
 }

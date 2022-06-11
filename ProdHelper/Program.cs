@@ -1,4 +1,7 @@
-﻿namespace ProdHelper
+﻿using ProdHelper.ObserverClient;
+using ProdHelper.ProductionClient;
+
+namespace ProdHelper
 {
     public class Program
     {
@@ -25,6 +28,10 @@
                         case "2":
                             Console.WriteLine("Opening Production Client");
                             new TallyLightProd().ShowDialog();
+                            break;
+                        case "3":
+                            Console.WriteLine("Opening Observer Client");
+                            new TallyLightObserver().ShowDialog();
                             break;
                         case "h":
                             ListOptions();
