@@ -152,7 +152,7 @@ namespace ProdHelper.ObserverClient
                 updateTimer.Tick += GetCamState;
                 updateTimer.Enabled = true;
 
-                OpenBtn.Text = "Stop";
+                OpenBtn.Text = "Close";
             }
             else
             {
@@ -170,7 +170,7 @@ namespace ProdHelper.ObserverClient
 
             updateTimer.Enabled = false;
             updateTimer.Dispose();
-            OpenBtn.Text = "Start";
+            OpenBtn.Text = "Open Tally Light";
         }
 
         private async void GetCamState(object? sender, EventArgs e)
