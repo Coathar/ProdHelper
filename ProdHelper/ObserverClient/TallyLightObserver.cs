@@ -29,7 +29,7 @@ namespace ProdHelper.ObserverClient
 
         private TallyLightForm tallyLightForm = null;
         private System.Windows.Forms.Timer updateTimer = null;
-        private Process targetProcess = null;
+        private System.Diagnostics.Process targetProcess = null;
 
         private Dictionary<string, string> cachedProcesses = new Dictionary<string, string>();
 
@@ -92,9 +92,9 @@ namespace ProdHelper.ObserverClient
 
             List<string> toShow = new List<string>();
 
-            Process[] processes = Process.GetProcesses();
+            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcesses();
 
-            foreach (Process p in processes)
+            foreach (System.Diagnostics.Process p in processes)
             {
                 if (!string.IsNullOrEmpty(p.MainWindowTitle))
                 {
@@ -133,12 +133,10 @@ namespace ProdHelper.ObserverClient
                 if (!OverlayAppChk.Checked)
                 {
                     tallyLightForm = new TallyLightForm();
-                    
-                    tallyLightForm.FormClosed += StopTimer;
-                }
+                                    }
                 else
                 {
-                    Process[] foundProcesses = Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
+                    System.Diagnostics.Process[] foundProcesses = System.Diagnostics.Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
 
                     if (foundProcesses.Length > 0)
                     {
@@ -167,6 +165,12 @@ namespace ProdHelper.ObserverClient
             }
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            StopTimer(this, e);
+        }
 
         private void StopTimer(object? sender, EventArgs e)
         {
