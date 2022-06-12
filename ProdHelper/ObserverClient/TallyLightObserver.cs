@@ -145,7 +145,7 @@ namespace ProdHelper.ObserverClient
                                     }
                 else
                 {
-                    System.Diagnostics.Process[] foundProcesses = System.Diagnostics.Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
+                    Process[] foundProcesses = Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
 
                     if (foundProcesses.Length > 0)
                     {
