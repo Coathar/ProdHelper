@@ -89,7 +89,7 @@
             this.OpenBtn.Location = new System.Drawing.Point(12, 187);
             this.OpenBtn.Name = "OpenBtn";
             this.OpenBtn.Size = new System.Drawing.Size(274, 60);
-            this.OpenBtn.TabIndex = 6;
+            this.OpenBtn.TabIndex = 7;
             this.OpenBtn.Text = "Open Tally Light";
             this.OpenBtn.UseVisualStyleBackColor = true;
             this.OpenBtn.Click += new System.EventHandler(this.OpenBtn_Click);
@@ -117,7 +117,7 @@
             this.ApplicationComboBox.Location = new System.Drawing.Point(123, 155);
             this.ApplicationComboBox.Name = "ApplicationComboBox";
             this.ApplicationComboBox.Size = new System.Drawing.Size(162, 23);
-            this.ApplicationComboBox.TabIndex = 5;
+            this.ApplicationComboBox.TabIndex = 6;
             this.ApplicationComboBox.DropDown += new System.EventHandler(this.ApplicationComboBox_DropDown);
             this.ApplicationComboBox.SelectedIndexChanged += new System.EventHandler(this.ApplicationComboBox_SelectedIndexChanged);
             this.ApplicationComboBox.TextUpdate += new System.EventHandler(this.ApplicationComboBox_TextUpdate);
@@ -137,7 +137,7 @@
             this.OverlayAppChk.Location = new System.Drawing.Point(123, 131);
             this.OverlayAppChk.Name = "OverlayAppChk";
             this.OverlayAppChk.Size = new System.Drawing.Size(130, 19);
-            this.OverlayAppChk.TabIndex = 100;
+            this.OverlayAppChk.TabIndex = 5;
             this.OverlayAppChk.Text = "Overlay Application";
             this.OverlayAppChk.UseVisualStyleBackColor = true;
             this.OverlayAppChk.CheckedChanged += new System.EventHandler(this.OverlayAppChk_CheckedChanged);
@@ -160,6 +160,7 @@
             this.Controls.Add(this.ApplyBtn);
             this.Name = "TallyLightObserver";
             this.Text = "Tally Light (Observer)";
+            this.Load += new System.EventHandler(this.TallyLightObserver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

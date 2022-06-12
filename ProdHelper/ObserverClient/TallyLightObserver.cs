@@ -188,8 +188,12 @@ namespace ProdHelper.ObserverClient
                 tallyLightForm.Close();
             }
 
-            updateTimer.Enabled = false;
-            updateTimer.Dispose();
+            if (updateTimer != null)
+            {
+                updateTimer.Enabled = false;
+                updateTimer.Dispose();
+            }
+           
             OpenBtn.Text = "Open Tally Light";
         }
 
@@ -249,6 +253,11 @@ namespace ProdHelper.ObserverClient
         private void ApplicationComboBox_TextUpdate(object sender, EventArgs e)
         {
             OpenBtn.Enabled = !string.IsNullOrEmpty(ApplicationComboBox.Text);
+        }
+
+        private void TallyLightObserver_Load(object sender, EventArgs e)
+        {
+            Activate();
         }
     }
 }

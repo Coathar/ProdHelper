@@ -263,7 +263,7 @@ namespace ProdHelper.ProductionClient
         private void TallyLightProd_Load(object sender, EventArgs e)
         {
             WebsocketServerTxt.Text = "ws://127.0.0.1:4444";
-            Application.EnableVisualStyles();
+            Activate();
         }
 
         private void TallyLightCamListBox_DrawItem(object sender, DrawItemEventArgs e)
