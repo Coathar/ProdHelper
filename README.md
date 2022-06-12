@@ -29,6 +29,7 @@ See here for a tutorial: https://www.youtube.com/watch?v=4nAdo8zQvAY or follow t
  - Fill in the Server Settings. The 'Server' field is a valid IP pointing to an instance of the server at TallyLightServer/server.js. This is a simple JavaScript html server that you can setup via NodeJS. The 'Producer' field needs to match the 'Producer' field on the production/obs director's side. The 'Camera Name' field will be the same as your Camera name on the production/obs director side.
  - Click 'Apply' to validate the server information.
  - Click on 'Open New Window' to open the display. If 'Overlay Application' is unchecked, it will bring up a new square with the status of your feed. If instead 'Overlay Application is checked, you can select the application to overlay on in the 'Select Application' dropdown box.
+   - Black means the connection to the server failed.
    - White means your camera was not found on the server. Check your camera and production name to make sure it matches that of the producer's side.
    - Blue means that your camera is clear.
    - Orange means that your camera is on preview.
