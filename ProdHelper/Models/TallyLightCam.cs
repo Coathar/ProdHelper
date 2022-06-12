@@ -38,7 +38,9 @@
                 case CamState.NotFound:
                     toReturn = Color.White;
                     break;
-
+                case CamState.Disconnected:
+                    toReturn = Color.Black;
+                    break;
             }
 
             return toReturn;
@@ -47,6 +49,7 @@
 
     public enum CamState
     {
+        Disconnected = -1,
         NotFound,
         Clear,
         Preview,

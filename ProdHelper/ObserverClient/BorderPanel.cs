@@ -21,6 +21,14 @@ namespace ProdHelper.ObserverClient
 
         public Shape DrawShape { get; set; }
 
+        public bool HasProcess 
+        { 
+            get
+            {
+                return ((TallyLightForm)Parent).HasProcess;
+            }
+        }
+
         public BorderPanel()
         {
             BorderStyle = BorderStyle.None;
@@ -32,7 +40,7 @@ namespace ProdHelper.ObserverClient
         {
             base.OnMouseMove(e);
 
-            if (e.Button == MouseButtons.Left)
+            if (!HasProcess && e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
                 SendMessage(Parent.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);

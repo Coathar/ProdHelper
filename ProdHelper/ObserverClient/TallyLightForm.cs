@@ -122,9 +122,11 @@ namespace ProdHelper.ObserverClient
                         m.Result = (IntPtr)HTTRANSPARENT;
                         return;
                     }
-
-                    if ((int)m.Result == HTCLIENT)
-                        m.Result = (IntPtr)HTCAPTION;
+                    else
+                    {
+                        if ((int)m.Result == HTCLIENT)
+                            m.Result = (IntPtr)HTCAPTION;
+                    }
                     return;
             }
 

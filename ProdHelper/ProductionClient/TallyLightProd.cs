@@ -14,7 +14,8 @@ namespace ProdHelper.ProductionClient
 
         protected OBSWebsocket obs;
 
-        HttpClient httpClient = new HttpClient();
+        private HttpClient httpClient = new HttpClient();
+        private int lastTallyLightCamNumber = 1;
 
         bool sendUpdates;
 
@@ -26,7 +27,7 @@ namespace ProdHelper.ProductionClient
 
         private void TallyLightAddBtn_Click(object sender, EventArgs e)
         {
-            TallyLightCam toAdd = new TallyLightCam($"New Camera {tallyLightCamBindingSource.Count + 1}", "");
+            TallyLightCam toAdd = new TallyLightCam($"New Camera {lastTallyLightCamNumber++}", "");
             tallyLightCamBindingSource.Add(toAdd);
             TallyLightCamListBox.SelectedIndex = tallyLightCamBindingSource.Count - 1;
 

@@ -27,9 +27,11 @@ namespace ProdHelper.ObserverClient
 
         private HttpClient httpClient;
 
-        private TallyLightForm tallyLightForm = null;
-        private System.Windows.Forms.Timer updateTimer = null;
-        private System.Diagnostics.Process targetProcess = null;
+        private int failedConnectionCount = 0;
+
+        private TallyLightForm tallyLightForm;
+        private System.Windows.Forms.Timer updateTimer;
+        private Process targetProcess;
 
         private Dictionary<string, string> cachedProcesses = new Dictionary<string, string>();
 
@@ -142,7 +144,7 @@ namespace ProdHelper.ObserverClient
                 if (!OverlayAppChk.Checked)
                 {
                     tallyLightForm = new TallyLightForm();
-                                    }
+                }
                 else
                 {
                     Process[] foundProcesses = Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
@@ -207,18 +209,36 @@ namespace ProdHelper.ObserverClient
 
             StringContent payload = new StringContent(jsonString);
 
-            HttpResponseMessage response =  await httpClient.SendAsync(new HttpRequestMessage()
-            {
-                RequestUri = new Uri($"{Server}/getCams"),
-                Method = HttpMethod.Get,
-                Content = payload
-            });
+            CamState camState = CamState.NotFound;
 
-            CamState camState = CamState.Clear;
-
-            using (StreamReader reader = new StreamReader(response.Content.ReadAsStream()))
+            try
             {
-                camState = (CamState)int.Parse(reader.ReadToEnd());
+                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage()
+                {
+                    RequestUri = new Uri($"{Server}/getCams"),
+                    Method = HttpMethod.Get,
+                    Content = payload
+                });
+
+                using (StreamReader reader = new StreamReader(response.Content.ReadAsStream()))
+                {
+                    camState = (CamState)int.Parse(reader.ReadToEnd());
+                }
+
+                failedConnectionCount = 0;
+            }
+            catch (HttpRequestException ex )
+            {
+                // "Lost" connection
+                if (ex.StatusCode == null)
+                {
+                    failedConnectionCount++;
+                }
+
+                if (failedConnectionCount > 10)
+                {
+                    camState = CamState.Disconnected;
+                }
             }
 
             tallyLightForm.UpdateForm(camState);
