@@ -38,6 +38,7 @@
             this.ProdLbl = new System.Windows.Forms.Label();
             this.ApplicationComboBox = new System.Windows.Forms.ComboBox();
             this.ApplicationLbl = new System.Windows.Forms.Label();
+            this.OverlayAppChk = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ApplyBtn
@@ -84,7 +85,6 @@
             // 
             // OpenBtn
             // 
-            this.OpenBtn.Enabled = false;
             this.OpenBtn.Location = new System.Drawing.Point(12, 187);
             this.OpenBtn.Name = "OpenBtn";
             this.OpenBtn.Size = new System.Drawing.Size(274, 60);
@@ -105,33 +105,48 @@
             this.ProdLbl.AutoSize = true;
             this.ProdLbl.Location = new System.Drawing.Point(34, 49);
             this.ProdLbl.Name = "ProdLbl";
-            this.ProdLbl.Size = new System.Drawing.Size(63, 15);
+            this.ProdLbl.Size = new System.Drawing.Size(58, 15);
             this.ProdLbl.TabIndex = 99;
-            this.ProdLbl.Text = "Prodution:";
+            this.ProdLbl.Text = "Producer:";
             // 
             // ApplicationComboBox
             // 
+            this.ApplicationComboBox.Enabled = false;
             this.ApplicationComboBox.FormattingEnabled = true;
-            this.ApplicationComboBox.Location = new System.Drawing.Point(123, 146);
+            this.ApplicationComboBox.Location = new System.Drawing.Point(123, 155);
             this.ApplicationComboBox.Name = "ApplicationComboBox";
             this.ApplicationComboBox.Size = new System.Drawing.Size(162, 23);
             this.ApplicationComboBox.TabIndex = 5;
             this.ApplicationComboBox.DropDown += new System.EventHandler(this.ApplicationComboBox_DropDown);
+            this.ApplicationComboBox.SelectedIndexChanged += new System.EventHandler(this.ApplicationComboBox_SelectedIndexChanged);
+            this.ApplicationComboBox.TextUpdate += new System.EventHandler(this.ApplicationComboBox_TextUpdate);
             // 
             // ApplicationLbl
             // 
             this.ApplicationLbl.AutoSize = true;
-            this.ApplicationLbl.Location = new System.Drawing.Point(12, 149);
+            this.ApplicationLbl.Location = new System.Drawing.Point(12, 158);
             this.ApplicationLbl.Name = "ApplicationLbl";
             this.ApplicationLbl.Size = new System.Drawing.Size(105, 15);
             this.ApplicationLbl.TabIndex = 99;
             this.ApplicationLbl.Text = "Select Application:";
+            // 
+            // OverlayAppChk
+            // 
+            this.OverlayAppChk.AutoSize = true;
+            this.OverlayAppChk.Location = new System.Drawing.Point(123, 131);
+            this.OverlayAppChk.Name = "OverlayAppChk";
+            this.OverlayAppChk.Size = new System.Drawing.Size(130, 19);
+            this.OverlayAppChk.TabIndex = 100;
+            this.OverlayAppChk.Text = "Overlay Application";
+            this.OverlayAppChk.UseVisualStyleBackColor = true;
+            this.OverlayAppChk.CheckedChanged += new System.EventHandler(this.OverlayAppChk_CheckedChanged);
             // 
             // TallyLightObserver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 259);
+            this.Controls.Add(this.OverlayAppChk);
             this.Controls.Add(this.ApplicationLbl);
             this.Controls.Add(this.ApplicationComboBox);
             this.Controls.Add(this.ProdLbl);
@@ -144,7 +159,6 @@
             this.Controls.Add(this.ApplyBtn);
             this.Name = "TallyLightObserver";
             this.Text = "Tally Light (Observer)";
-            this.Load += new System.EventHandler(this.TallyLightObserver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +176,6 @@
         private Label ProdLbl;
         private ComboBox ApplicationComboBox;
         private Label ApplicationLbl;
+        private CheckBox OverlayAppChk;
     }
 }

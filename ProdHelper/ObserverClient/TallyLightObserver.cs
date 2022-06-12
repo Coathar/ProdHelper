@@ -36,8 +36,6 @@ namespace ProdHelper.ObserverClient
             httpClient = new HttpClient();
 
             InitializeComponent();
-
-            ApplicationComboBox.Text = Constants.OBSERVER_NEW_WINDOW;
         }
 
         private void ApplyBtn_Click(object sender, EventArgs e)
@@ -86,8 +84,6 @@ namespace ProdHelper.ObserverClient
             cachedProcesses.Clear();
 
             List<string> toShow = new List<string>();
-            toShow.Add($"{Constants.OBSERVER_NEW_WINDOW}");
-
 
             Process[] processes = Process.GetProcesses();
 
@@ -95,8 +91,14 @@ namespace ProdHelper.ObserverClient
             {
                 if (!string.IsNullOrEmpty(p.MainWindowTitle))
                 {
-                    toShow.Add($"{p.MainWindowTitle} - ({Path.GetFileName(p?.MainModule?.FileName)})");
-                    cachedProcesses.Add($"{p.MainWindowTitle} - ({Path.GetFileName(p?.MainModule?.FileName)})", p.ProcessName);
+                    string displayName = $"{p.MainWindowTitle} - ({Path.GetFileName(p?.MainModule?.FileName)})";
+                    if (cachedProcesses.ContainsKey(displayName))
+                    {
+                        displayName += "(1)";
+                    }
+
+                    toShow.Add(displayName);
+                    cachedProcesses.Add(displayName, p.ProcessName);
                 }
             }
 
@@ -121,7 +123,7 @@ namespace ProdHelper.ObserverClient
         {
             if (updateTimer == null || !updateTimer.Enabled)
             {
-                if (ApplicationComboBox.Text == Constants.OBSERVER_NEW_WINDOW)
+                if (!OverlayAppChk.Checked)
                 {
                     tallyLightForm = new TallyLightForm();
                     
@@ -135,6 +137,11 @@ namespace ProdHelper.ObserverClient
                     {
                         targetProcess = foundProcesses[0];
                         tallyLightForm = new TallyLightForm(targetProcess);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid process selected. Please try selecting the process again.");
+                        return;
                     }
                 }
 
@@ -193,9 +200,30 @@ namespace ProdHelper.ObserverClient
             tallyLightForm.UpdateForm(camState);
         }
 
-        private void TallyLightObserver_Load(object sender, EventArgs e)
+        private void OverlayAppChk_CheckedChanged(object sender, EventArgs e)
         {
-            Application.EnableVisualStyles();
+            CheckBox checkBox = (CheckBox)sender;
+
+            if (checkBox.Checked)
+            {
+                ApplicationComboBox.Enabled = true;
+                OpenBtn.Enabled = false;
+            }
+            else
+            {
+                ApplicationComboBox.Enabled = false;
+                OpenBtn.Enabled = true;
+            }
+        }
+
+        private void ApplicationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OpenBtn.Enabled = true;
+        }
+
+        private void ApplicationComboBox_TextUpdate(object sender, EventArgs e)
+        {
+            OpenBtn.Enabled = !string.IsNullOrEmpty(ApplicationComboBox.Text);
         }
     }
 }
