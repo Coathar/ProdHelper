@@ -55,6 +55,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ShowPasswordChk = new System.Windows.Forms.CheckBox();
             this.SceneComboBox = new System.Windows.Forms.ComboBox();
+            this.MoveUpBtn = new System.Windows.Forms.Button();
+            this.MoveDownBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tallyLightCamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,9 +67,9 @@
             this.TallyLightCamListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.TallyLightCamListBox.FormattingEnabled = true;
             this.TallyLightCamListBox.ItemHeight = 15;
-            this.TallyLightCamListBox.Location = new System.Drawing.Point(16, 26);
+            this.TallyLightCamListBox.Location = new System.Drawing.Point(16, 41);
             this.TallyLightCamListBox.Name = "TallyLightCamListBox";
-            this.TallyLightCamListBox.Size = new System.Drawing.Size(156, 319);
+            this.TallyLightCamListBox.Size = new System.Drawing.Size(156, 304);
             this.TallyLightCamListBox.TabIndex = 0;
             this.TallyLightCamListBox.ValueMember = "CameraName";
             this.TallyLightCamListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TallyLightCamListBox_DrawItem);
@@ -298,11 +300,33 @@
             this.SceneComboBox.DropDown += new System.EventHandler(this.SceneComboBox_DropDown);
             this.SceneComboBox.DropDownClosed += new System.EventHandler(this.SceneComboBox_DropDownClosed);
             // 
+            // MoveUpBtn
+            // 
+            this.MoveUpBtn.Location = new System.Drawing.Point(16, 12);
+            this.MoveUpBtn.Name = "MoveUpBtn";
+            this.MoveUpBtn.Size = new System.Drawing.Size(24, 23);
+            this.MoveUpBtn.TabIndex = 100;
+            this.MoveUpBtn.Text = "^";
+            this.MoveUpBtn.UseVisualStyleBackColor = true;
+            this.MoveUpBtn.Click += new System.EventHandler(this.MoveUpBtn_Click);
+            // 
+            // MoveDownBtn
+            // 
+            this.MoveDownBtn.Location = new System.Drawing.Point(46, 12);
+            this.MoveDownBtn.Name = "MoveDownBtn";
+            this.MoveDownBtn.Size = new System.Drawing.Size(24, 23);
+            this.MoveDownBtn.TabIndex = 101;
+            this.MoveDownBtn.Text = "v";
+            this.MoveDownBtn.UseVisualStyleBackColor = true;
+            this.MoveDownBtn.Click += new System.EventHandler(this.MoveDownBtn_Click);
+            // 
             // TallyLightProd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 406);
+            this.Controls.Add(this.MoveDownBtn);
+            this.Controls.Add(this.MoveUpBtn);
             this.Controls.Add(this.SceneComboBox);
             this.Controls.Add(this.ShowPasswordChk);
             this.Controls.Add(this.label6);
@@ -365,5 +389,7 @@
         private Label label6;
         private CheckBox ShowPasswordChk;
         private ComboBox SceneComboBox;
+        private Button MoveUpBtn;
+        private Button MoveDownBtn;
     }
 }

@@ -16,7 +16,6 @@ namespace ProdHelper.ProductionClient
 
         private HttpClient httpClient = new HttpClient();
         private int lastTallyLightCamNumber = 1;
-
         bool sendUpdates;
 
         public TallyLightProd()
@@ -98,7 +97,7 @@ namespace ProdHelper.ProductionClient
         {
             if (string.IsNullOrEmpty(ProdNameTxt.Text))
             {
-                MessageBox.Show("Prod name is a required value.");
+                MessageBox.Show("Producer is a required value.");
                 return;
             }
 
@@ -155,18 +154,24 @@ namespace ProdHelper.ProductionClient
 
                 StringContent payload = new StringContent(jsonString);
 
-                await httpClient.SendAsync(new HttpRequestMessage()
+                try
                 {
-                    RequestUri = new Uri($"{Server}/setCams"),
-                    Method = HttpMethod.Put,
-                    Content = payload
-                });
+                    await httpClient.SendAsync(new HttpRequestMessage()
+                    {
+                        RequestUri = new Uri($"{Server}/setCams"),
+                        Method = HttpMethod.Put,
+                        Content = payload
+                    });
+                }
+                catch (HttpRequestException ex)
+                {
+                    if (ex.StatusCode == null)
+                    {
+                        MessageBox.Show("Error reaching server");
+                        Console.WriteLine(ex.Message);
+                    }
+                }
             }
-        }
-
-        private void onConnect(object? sender, EventArgs e)
-        {
-            
         }
 
         private void onDisconnect(object? sender, EventArgs e)
@@ -197,10 +202,10 @@ namespace ProdHelper.ProductionClient
                     }
                 }
 
-                SendUpdate();
-
                 TallyLightCamListBox.Invalidate();
             }
+
+            SendUpdate();
         }
 
         private void StartWebsocketBtn_Click(object sender, EventArgs e)
@@ -213,6 +218,12 @@ namespace ProdHelper.ProductionClient
                 }
                 catch (Exception ex)
                 {
+                    if (ex is AuthFailureException)
+                    {
+                        MessageBox.Show("Unable to connect to websocket server due to bad authentication. Check the password and try again.");
+                        return;
+                    }
+
                     MessageBox.Show("Error connecting to websocket. Check the server IP and password and try again. Check the console for more information");
                     Console.WriteLine(ex.Message);
                     return;
@@ -224,7 +235,6 @@ namespace ProdHelper.ProductionClient
                     return;
                 }
 
-                obs.Connected += onConnect;
                 obs.Disconnected += onDisconnect;
                 obs.SceneChanged += onSceneChanged;
                 obs.PreviewSceneChanged += onSceneChanged;
@@ -240,7 +250,6 @@ namespace ProdHelper.ProductionClient
             {
                 obs.Disconnect();
 
-                obs.Connected -= onConnect;
                 obs.Disconnected -= onDisconnect;
                 obs.SceneChanged -= onSceneChanged;
                 obs.PreviewSceneChanged -= onSceneChanged;
@@ -279,8 +288,7 @@ namespace ProdHelper.ProductionClient
             TallyLightCam? cam = TallyLightCamListBox.Items[e.Index] as TallyLightCam;
             Graphics g = e.Graphics;
 
-            SolidBrush backgroundBrush = new SolidBrush(Color.FromKnownColor(KnownColor.White));
-            int redValue = 255;
+            SolidBrush backgroundBrush = new SolidBrush(Color.White);
 
             // Set alpha of selected box
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
@@ -318,10 +326,47 @@ namespace ProdHelper.ProductionClient
 
         private void SceneComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            if (!obs.IsConnected)
+            SceneComboBox.Items.Clear();
+        }
+
+        private void MoveUpBtn_Click(object sender, EventArgs e)
+        {
+            MoveItem(true);
+        }
+
+        private void MoveDownBtn_Click(object sender, EventArgs e)
+        {
+            MoveItem(false);
+        }
+
+        private void MoveItem(bool up)
+        {
+            int currentIndex = TallyLightCamListBox.SelectedIndex;
+
+            if (currentIndex < 0 || (!up && currentIndex + 1 >= TallyLightCamListBox.Items.Count) || (up && currentIndex - 1 < 0))
             {
-                SceneComboBox.Items.Clear();
+                return;
             }
+
+            List<TallyLightCam> currentItems = new List<TallyLightCam>(TallyLightCamListBox.Items.Cast<TallyLightCam>());
+
+            if (up)
+            {
+                TallyLightCam old = currentItems[currentIndex - 1];
+                currentItems[currentIndex - 1] = currentItems[currentIndex];
+                currentItems[currentIndex] = old;
+                TallyLightCamListBox.SelectedIndex = currentIndex - 1;
+            }
+            else
+            {
+
+                TallyLightCam old = currentItems[currentIndex + 1];
+                currentItems[currentIndex + 1] = currentItems[currentIndex];
+                currentItems[currentIndex] = old;
+                TallyLightCamListBox.SelectedIndex = currentIndex + 1;
+            }
+
+            tallyLightCamBindingSource.DataSource = currentItems;
         }
     }
 }

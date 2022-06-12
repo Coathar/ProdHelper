@@ -32,7 +32,8 @@ function readCam(req, res)
     });
     req.on('end', function () 
     {
-        console.log(body);
+        let timestamp = new Date();
+        console.log(timestamp.toLocaleString() + ' ' + body);
         const incomingObject = JSON.parse(body);
 
         let prodName = incomingObject["Prod"];
@@ -53,7 +54,8 @@ function sendCam(req, res)
 
     req.on('end', function () 
     {
-        console.log(body);
+        let timestamp = new Date();
+        console.log(timestamp.toLocaleString() + ' ' + body);
         const incomingObject = JSON.parse(body);
 
         let prodName = incomingObject["Prod"];
