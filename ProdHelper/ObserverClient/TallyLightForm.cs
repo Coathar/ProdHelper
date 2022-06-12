@@ -103,6 +103,8 @@ namespace ProdHelper.ObserverClient
                 targetProcessPanel.Width = Width;
                 targetProcessPanel.Top = 0;
                 targetProcessPanel.Height = Height;
+
+                BringToFront();
             }
             else if (HasProcess && targetProcess.HasExited)
             {
@@ -131,26 +133,7 @@ namespace ProdHelper.ObserverClient
             base.WndProc(ref m);
         }
 
-        public Color ColorFromState(CamState camState)
-        {
-            Color toReturn = Color.White;
-
-            switch (camState)
-            {  
-                case CamState.Preview:
-                    toReturn = Color.FromArgb(255, 183, 0);
-                    break;
-                case CamState.Active:
-                    toReturn = Color.FromArgb(255, 0, 0);
-                    break;
-                case CamState.NotFound:
-                    toReturn = Color.FromArgb(100, 100, 255);
-                    break;
-
-            }
-
-            return toReturn;
-        }
+        
 
         private void InitializeComponent()
         {

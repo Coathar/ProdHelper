@@ -1,4 +1,5 @@
-﻿using ProdHelper.Utils;
+﻿using ProdHelper.Models;
+using ProdHelper.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace ProdHelper.ObserverClient
         protected override void OnPaint(PaintEventArgs e)
         {
             TallyLightForm parent = Parent as TallyLightForm;
-            Color camColor = parent.ColorFromState(parent.LastCamState);
+            Color camColor = TallyLightCam.ColorFromState(parent.LastCamState);
 
             if (parent.HasProcess)
             {

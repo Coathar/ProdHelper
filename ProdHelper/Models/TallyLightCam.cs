@@ -19,6 +19,30 @@
         {
             return $"{CameraName} - {Scene}";
         }
+
+        public static Color ColorFromState(CamState camState)
+        {
+            Color toReturn = Color.White;
+
+            switch (camState)
+            {
+                case CamState.Preview:
+                    toReturn = Color.FromArgb(255, 183, 0);
+                    break;
+                case CamState.Active:
+                    toReturn = Color.FromArgb(255, 0, 0);
+                    break;
+                case CamState.Clear:
+                    toReturn = Color.FromArgb(100, 100, 255);
+                    break;
+                case CamState.NotFound:
+                    toReturn = Color.White;
+                    break;
+
+            }
+
+            return toReturn;
+        }
     }
 
     public enum CamState
@@ -27,5 +51,9 @@
         Clear,
         Preview,
         Active,
+
+
     }
+
+    
 }

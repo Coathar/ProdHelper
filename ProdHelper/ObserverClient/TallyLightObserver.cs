@@ -23,6 +23,8 @@ namespace ProdHelper.ObserverClient
 
         public string Camera { get; set; } = string.Empty;
 
+        public bool ValidatedServer { get; set; } = false;
+
         private HttpClient httpClient;
 
         private TallyLightForm tallyLightForm = null;
@@ -62,7 +64,12 @@ namespace ProdHelper.ObserverClient
                 if (response.IsSuccessStatusCode)
                 {
                     Server = ServerTxt.Text;
-                    OpenBtn.Enabled = true;
+                    ValidatedServer = true;
+
+                    if (!OverlayAppChk.Checked || !string.IsNullOrEmpty(ApplicationComboBox.Text))
+                    {
+                        OpenBtn.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -207,12 +214,17 @@ namespace ProdHelper.ObserverClient
             if (checkBox.Checked)
             {
                 ApplicationComboBox.Enabled = true;
+                
                 OpenBtn.Enabled = false;
             }
             else
             {
                 ApplicationComboBox.Enabled = false;
-                OpenBtn.Enabled = true;
+
+                if (ValidatedServer)
+                {
+                    OpenBtn.Enabled = true;
+                }
             }
         }
 

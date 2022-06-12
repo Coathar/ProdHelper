@@ -289,14 +289,7 @@ namespace ProdHelper.ProductionClient
 
             if(obs.IsConnected)
             {
-                if (cam?.State == CamState.Active)
-                {
-                    backgroundBrush = new SolidBrush(Color.FromArgb(128, 255, 0, 0));
-                }
-                else if (cam?.State == CamState.Preview)
-                {
-                    backgroundBrush = new SolidBrush(Color.FromArgb(128, 255, 183, 0));
-                }
+                backgroundBrush = new SolidBrush(Color.FromArgb(128, TallyLightCam.ColorFromState(cam.State)));
             }
 
             g.FillRectangle(backgroundBrush, e.Bounds);
