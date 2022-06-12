@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
     <PackageReference Include="obs-websocket-dotnet" Version="4.9.1" />
   </ItemGroup>
 

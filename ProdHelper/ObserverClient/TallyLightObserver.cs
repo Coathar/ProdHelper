@@ -1,4 +1,5 @@
-﻿using ProdHelper.Models;
+﻿using GameOverlay.Windows;
+using ProdHelper.Models;
 using ProdHelper.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ProdHelper.ObserverClient.TallyLightForm;
 
 namespace ProdHelper.ObserverClient
 {
@@ -25,11 +27,15 @@ namespace ProdHelper.ObserverClient
 
         public bool ValidatedServer { get; set; } = false;
 
+        public CamState LastCamState { get; set; }
+
         private HttpClient httpClient;
 
         private TallyLightForm tallyLightForm = null;
         private System.Windows.Forms.Timer updateTimer = null;
-        private System.Diagnostics.Process targetProcess = null;
+
+        private StickyWindowHandler stickyWindowHandler;
+        
 
         private Dictionary<string, string> cachedProcesses = new Dictionary<string, string>();
 
@@ -133,15 +139,16 @@ namespace ProdHelper.ObserverClient
                 if (!OverlayAppChk.Checked)
                 {
                     tallyLightForm = new TallyLightForm();
-                                    }
+                    tallyLightForm.FormClosed += StopTimer;
+
+                }
                 else
                 {
-                    System.Diagnostics.Process[] foundProcesses = System.Diagnostics.Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
+                    Process[] foundProcesses = Process.GetProcessesByName(cachedProcesses[ApplicationComboBox.Text]);
 
                     if (foundProcesses.Length > 0)
                     {
-                        targetProcess = foundProcesses[0];
-                        tallyLightForm = new TallyLightForm(targetProcess);
+                        stickyWindowHandler = new StickyWindowHandler(foundProcesses[0], this, Keys.Q);
                     }
                     else
                     {
@@ -149,8 +156,6 @@ namespace ProdHelper.ObserverClient
                         return;
                     }
                 }
-
-                tallyLightForm.FormClosed += StopTimer;
 
                 updateTimer = new System.Windows.Forms.Timer();
                 updateTimer.Interval = 100;
@@ -174,9 +179,14 @@ namespace ProdHelper.ObserverClient
 
         private void StopTimer(object? sender, EventArgs e)
         {
-            if (sender != tallyLightForm)
+            if (tallyLightForm != null)
             {
                 tallyLightForm.Close();
+            }
+
+            if (stickyWindowHandler != null)
+            {
+                stickyWindowHandler.Dispose();
             }
 
             updateTimer.Enabled = false;
@@ -201,14 +211,17 @@ namespace ProdHelper.ObserverClient
                 Content = payload
             });
 
-            CamState camState = CamState.Clear;
+            LastCamState = CamState.Clear;
 
             using (StreamReader reader = new StreamReader(response.Content.ReadAsStream()))
             {
-                camState = (CamState)int.Parse(reader.ReadToEnd());
+                LastCamState = (CamState)int.Parse(reader.ReadToEnd());
             }
 
-            tallyLightForm.UpdateForm(camState);
+            if (tallyLightForm != null)
+            {
+                tallyLightForm.UpdateForm();
+            }
         }
 
         private void OverlayAppChk_CheckedChanged(object sender, EventArgs e)

@@ -23,7 +23,13 @@ namespace ProdHelper.ObserverClient
         private Process targetProcess;
         private Panel targetProcessPanel;
 
-        public CamState LastCamState { get; private set; } = CamState.Clear;
+        public CamState LastCamState
+        {
+            get
+            {
+                return ((TallyLightForm)Parent).LastCamState;
+            }
+        }
 
         public bool HasProcess 
         {
@@ -33,8 +39,7 @@ namespace ProdHelper.ObserverClient
             }
         }
 
-        [DllImport("user32.dll")]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
+       
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
@@ -76,39 +81,10 @@ namespace ProdHelper.ObserverClient
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
-            if (HasProcess)
-            {
-                int style = GetWindowLong(Handle, GWL_EXSTYLE);
-                SetWindowLong(Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT);
-            }
         }
 
-        public void UpdateForm(CamState camState)
+        public void UpdateForm()
         {
-            LastCamState = camState;
-
-            if (HasProcess && !targetProcess.HasExited)
-            {
-                IntPtr ptr = targetProcess.MainWindowHandle;
-                Rect processRect = new Rect();
-                GetWindowRect(ptr, ref processRect);
-
-                Left = processRect.Left;
-                Width = processRect.Right - processRect.Left;
-                Top = processRect.Top;
-                Height = processRect.Bottom - processRect.Top;
-
-                targetProcessPanel.Left = 0;
-                targetProcessPanel.Width = Width;
-                targetProcessPanel.Top = 0;
-                targetProcessPanel.Height = Height;
-            }
-            else if (HasProcess && targetProcess.HasExited)
-            {
-                Close();
-            }
-
             targetProcessPanel.Invalidate();
         }
 
@@ -143,14 +119,6 @@ namespace ProdHelper.ObserverClient
             this.Name = "TallyLightForm";
             this.ResumeLayout(false);
 
-        }
-
-        public struct Rect
-        {
-            public int Left { get; set; }
-            public int Top { get; set; }
-            public int Right { get; set; }
-            public int Bottom { get; set; }
         }
     }
 }
