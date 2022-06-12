@@ -42,13 +42,13 @@ namespace ProdHelper.ObserverClient
         {
             if (string.IsNullOrEmpty(ProdNameTxt.Text))
             {
-                MessageBox.Show("Prod name is a required value.");
+                MessageBox.Show("Producer is a required value.");
                 return;
             }
 
             if (string.IsNullOrEmpty(CameraNameTxt.Text))
             {
-                MessageBox.Show("Prod name is a required value.");
+                MessageBox.Show("Camera Name is a required value.");
                 return;
             }
 

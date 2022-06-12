@@ -68,6 +68,7 @@ namespace ProdHelper.ProductionClient
                 selectedCam.CameraName = CameraNameTxt.Text;
                 selectedCam.Scene = SceneComboBox.Text;
                 tallyLightCamBindingSource.ResetBindings(false);
+
                 onSceneChanged(obs, "");
             }
         }
@@ -102,16 +103,25 @@ namespace ProdHelper.ProductionClient
 
             ProdName = ProdNameTxt.Text;
 
-            HttpResponseMessage response = httpClient.GetAsync(ServerTxt.Text + "/ping").Result;
+            try
+            {
+                HttpResponseMessage response = httpClient.GetAsync(ServerTxt.Text + "/ping").Result;
 
-            if (response.IsSuccessStatusCode)
-            {
-                Server = ServerTxt.Text;
-                StartBtn.Enabled = true;
+                if (response.IsSuccessStatusCode)
+                {
+                    Server = ServerTxt.Text;
+                    StartBtn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Could not make connection. Check the Server field and try again.");
+                    StartBtn.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Could not make connection. Check the Server field and try again.");
+                MessageBox.Show("Error while connecting to server. Check the console for more information.");
+                Console.WriteLine(ex.Message);
                 StartBtn.Enabled = false;
             }
         }
@@ -128,6 +138,7 @@ namespace ProdHelper.ProductionClient
             {
                 sendUpdates = true;
                 StartBtn.Text = "Stop";
+                SendUpdate();
             }
         }
 
@@ -167,7 +178,7 @@ namespace ProdHelper.ProductionClient
 
         private void onSceneChanged(OBSWebsocket sender, string newSceneName)
         {
-            if (sender.StudioModeEnabled())
+            if (sender.IsConnected && sender.StudioModeEnabled())
             {
                 foreach (TallyLightCam cam in tallyLightCamBindingSource)
                 {
