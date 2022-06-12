@@ -92,13 +92,22 @@ namespace ProdHelper.ObserverClient
 
             List<string> toShow = new List<string>();
 
-            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcesses();
+            Process[] processes = Process.GetProcesses();
 
-            foreach (System.Diagnostics.Process p in processes)
+            foreach (Process p in processes)
             {
                 if (!string.IsNullOrEmpty(p.MainWindowTitle))
                 {
-                    string displayName = $"{p.MainWindowTitle} - ({Path.GetFileName(p?.MainModule?.FileName)})";
+                    string fileName = string.Empty;
+
+                    try
+                    {
+                        fileName = $" - ({Path.GetFileName(p?.MainModule?.FileName)})";
+                    }
+                    catch (Win32Exception)
+                    { }
+
+                    string displayName = $"{p.MainWindowTitle}{fileName}";
                     if (cachedProcesses.ContainsKey(displayName))
                     {
                         displayName += "(1)";
