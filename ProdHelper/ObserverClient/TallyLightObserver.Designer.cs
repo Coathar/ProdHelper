@@ -89,7 +89,7 @@
             this.OpenBtn.Name = "OpenBtn";
             this.OpenBtn.Size = new System.Drawing.Size(274, 60);
             this.OpenBtn.TabIndex = 6;
-            this.OpenBtn.Text = "Open New Window";
+            this.OpenBtn.Text = "Open Tally Light";
             this.OpenBtn.UseVisualStyleBackColor = true;
             this.OpenBtn.Click += new System.EventHandler(this.OpenBtn_Click);
             // 
