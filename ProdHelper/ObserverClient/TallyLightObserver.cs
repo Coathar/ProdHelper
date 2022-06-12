@@ -183,7 +183,7 @@ namespace ProdHelper.ObserverClient
 
         private void StopTimer(object? sender, EventArgs e)
         {
-            if (tallyLightForm != null)
+            if (tallyLightForm != null && sender != tallyLightForm)
             {
                 tallyLightForm.Close();
             }
