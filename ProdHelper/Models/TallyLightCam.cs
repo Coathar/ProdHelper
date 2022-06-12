@@ -51,9 +51,5 @@
         Clear,
         Preview,
         Active,
-
-
     }
-
-    
 }

@@ -103,8 +103,6 @@ namespace ProdHelper.ObserverClient
                 targetProcessPanel.Width = Width;
                 targetProcessPanel.Top = 0;
                 targetProcessPanel.Height = Height;
-
-                BringToFront();
             }
             else if (HasProcess && targetProcess.HasExited)
             {
