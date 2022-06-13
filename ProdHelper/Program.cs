@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProdHelper.ObserverClient;
+using ProdHelper.ProductionClient;
+
+using System;
 
 namespace ProdHelper
 {
@@ -6,6 +9,8 @@ namespace ProdHelper
     {
         public static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+
             bool endApp = false;
 
             Console.WriteLine("ProdHelper Utility");
@@ -23,6 +28,14 @@ namespace ProdHelper
                     {
                         case "1":
                             SettingsFileUtil.Intitialize();
+                            break;
+                        case "2":
+                            Console.WriteLine("Opening Production Client");
+                            new TallyLightProd().ShowDialog();
+                            break;
+                        case "3":
+                            Console.WriteLine("Opening Observer Client");
+                            new TallyLightObserver().ShowDialog();
                             break;
                         case "h":
                             ListOptions();
@@ -47,6 +60,8 @@ namespace ProdHelper
         {
             Console.WriteLine("Options:");
             Console.WriteLine("1: Settings Util");
+            Console.WriteLine("2: Open OBS Tally Light Utility (Production/OBS Director)");
+            Console.WriteLine("3: Open OBS Tally Light Utility (Observer)");
             Console.WriteLine("H: List this menu");
             Console.WriteLine("X: Close");
         }
