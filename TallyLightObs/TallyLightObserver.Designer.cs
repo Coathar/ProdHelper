@@ -1,4 +1,4 @@
-﻿namespace ProdHelper.ObserverClient
+﻿namespace TallyLightObs
 {
     partial class TallyLightObserver
     {

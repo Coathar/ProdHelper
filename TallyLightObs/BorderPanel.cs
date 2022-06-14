@@ -1,13 +1,8 @@
-﻿using ProdHelper.Models;
-using ProdHelper.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
+using TallyLightShared.Models;
+using TallyLightShared.Utils;
 
-namespace ProdHelper.ObserverClient
+namespace TallyLightObs
 {
     public class BorderPanel : Panel
     {

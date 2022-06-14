@@ -1,7 +1,4 @@
-﻿using ProdHelper.ObserverClient;
-using ProdHelper.ProductionClient;
-
-using System;
+﻿using TallyLightObs;
 
 namespace ProdHelper
 {
@@ -9,8 +6,6 @@ namespace ProdHelper
     {
         public static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-
             bool endApp = false;
 
             Console.WriteLine("ProdHelper Utility");
@@ -31,7 +26,7 @@ namespace ProdHelper
                             break;
                         case "2":
                             Console.WriteLine("Opening Production Client");
-                            new TallyLightProd().ShowDialog();
+                            new TallyLightProd.TallyLightProd().ShowDialog();
                             break;
                         case "3":
                             Console.WriteLine("Opening Observer Client");

@@ -1,9 +1,9 @@
 ﻿using OBSWebsocketDotNet;
 using OBSWebsocketDotNet.Types;
-using ProdHelper.Models;
 using System.Net.Http;
+using TallyLightShared.Models;
 
-namespace ProdHelper.ProductionClient
+namespace TallyLightProd
 {
     public partial class TallyLightProd : Form
     {
