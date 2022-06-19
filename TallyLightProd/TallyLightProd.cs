@@ -326,7 +326,10 @@ namespace TallyLightProd
 
         private void SceneComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            SceneComboBox.Items.Clear();
+            if (!obs.IsConnected)
+            {
+                SceneComboBox.Items.Clear();
+            }
         }
 
         private void MoveUpBtn_Click(object sender, EventArgs e)
