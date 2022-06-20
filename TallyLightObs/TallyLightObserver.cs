@@ -28,6 +28,7 @@ namespace TallyLightObs
         public TallyLightObserver()
         {
             httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
 
             InitializeComponent();
         }

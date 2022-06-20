@@ -21,6 +21,10 @@ namespace TallyLightProd
         public TallyLightProd()
         {
             obs = new OBSWebsocket();
+
+            httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
+
             InitializeComponent();
         }
 
