@@ -1,19 +1,9 @@
-﻿using ProdHelper.Models;
-using ProdHelper.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using TallyLightShared.Models;
 
-namespace ProdHelper.ObserverClient
+namespace TallyLightObs
 {
     public partial class TallyLightObserver : Form
     {
@@ -38,6 +28,7 @@ namespace ProdHelper.ObserverClient
         public TallyLightObserver()
         {
             httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
 
             InitializeComponent();
         }

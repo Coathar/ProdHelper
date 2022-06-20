@@ -1,4 +1,4 @@
-﻿namespace ProdHelper.ProductionClient
+﻿namespace TallyLightProd
 {
     partial class TallyLightProd
     {
@@ -77,7 +77,7 @@
             // 
             // tallyLightCamBindingSource
             // 
-            this.tallyLightCamBindingSource.DataSource = typeof(ProdHelper.Models.TallyLightCam);
+            this.tallyLightCamBindingSource.DataSource = typeof(TallyLightShared.Models.TallyLightCam);
             // 
             // TallyLightAddBtn
             // 

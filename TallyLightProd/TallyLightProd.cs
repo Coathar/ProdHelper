@@ -1,9 +1,9 @@
 ﻿using OBSWebsocketDotNet;
 using OBSWebsocketDotNet.Types;
-using ProdHelper.Models;
 using System.Net.Http;
+using TallyLightShared.Models;
 
-namespace ProdHelper.ProductionClient
+namespace TallyLightProd
 {
     public partial class TallyLightProd : Form
     {
@@ -21,6 +21,10 @@ namespace ProdHelper.ProductionClient
         public TallyLightProd()
         {
             obs = new OBSWebsocket();
+
+            httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
+
             InitializeComponent();
         }
 
@@ -326,7 +330,10 @@ namespace ProdHelper.ProductionClient
 
         private void SceneComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            SceneComboBox.Items.Clear();
+            if (!obs.IsConnected)
+            {
+                SceneComboBox.Items.Clear();
+            }
         }
 
         private void MoveUpBtn_Click(object sender, EventArgs e)

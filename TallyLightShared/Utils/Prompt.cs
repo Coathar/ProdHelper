@@ -1,4 +1,4 @@
-﻿namespace ProdHelper.Utils
+﻿namespace TallyLightShared.Utils
 {
     public class Prompt
     {
@@ -13,6 +13,7 @@
                 TopLevel = true,
                 TopMost = true
             };
+
             Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
             TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400, Text = currentValue };
             Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 80, DialogResult = DialogResult.OK };

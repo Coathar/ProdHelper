@@ -16,14 +16,24 @@
     <StartupObject>ProdHelper.Program</StartupObject>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ObserverClient\**" />
+    <EmbeddedResource Remove="ObserverClient\**" />
+    <None Remove="ObserverClient\**" />
+    <Page Remove="ObserverClient\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="obs-websocket-dotnet" Version="4.9.1" />
+    <ProjectReference Include="..\TallyLightObs\TallyLightObs.csproj" />
+    <ProjectReference Include="..\TallyLightProd\TallyLightProd.csproj" />
+    <ProjectReference Include="..\TallyLightShared\TallyLightShared.csproj" />
   </ItemGroup>
 
 </Project>

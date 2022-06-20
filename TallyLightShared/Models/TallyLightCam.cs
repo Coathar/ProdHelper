@@ -1,4 +1,6 @@
-﻿namespace ProdHelper.Models
+﻿using System.Drawing;
+
+namespace TallyLightShared.Models
 {
     public class TallyLightCam
     {
