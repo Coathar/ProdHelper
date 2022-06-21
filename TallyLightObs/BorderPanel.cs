@@ -14,7 +14,7 @@ namespace TallyLightObs
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Shape DrawShape { get; set; }
+        public TallyLightShape DrawShape { get; set; }
 
         public bool HasProcess 
         { 
@@ -48,7 +48,7 @@ namespace TallyLightObs
 
             if (me.Button == MouseButtons.Right)
             {
-                if ((int)DrawShape + 1 >= Enum.GetValues<Shape>().Length)
+                if ((int)DrawShape + 1 >= Enum.GetValues<TallyLightShape>().Length)
                 {
                     DrawShape = 0;
                 }
@@ -87,21 +87,17 @@ namespace TallyLightObs
             {
                 SolidBrush brush = new SolidBrush(camColor);
 
-                if (DrawShape == Shape.Circle)
+                if (DrawShape == TallyLightShape.Circle)
                 {
                     e.Graphics.FillEllipse(brush, parent.ClientRectangle);
                 }
-                else if (DrawShape == Shape.Square)
+                else if (DrawShape == TallyLightShape.Square)
                 {
                     e.Graphics.FillRectangle(brush, parent.ClientRectangle);
                 }
             }
         }
 
-        public enum Shape
-        {
-            Square,
-            Circle
-        }
+        
     }
 }

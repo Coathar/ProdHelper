@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using TallyLightShared.ConfigUtils;
 using TallyLightShared.Models;
 
 namespace TallyLightObs
@@ -18,6 +19,7 @@ namespace TallyLightObs
         private HttpClient httpClient;
 
         private int failedConnectionCount = 0;
+        private ConfigHelper<GlobalConfigOptions> _configHelper;
 
         private TallyLightForm tallyLightForm;
         private System.Windows.Forms.Timer updateTimer;
@@ -29,6 +31,7 @@ namespace TallyLightObs
         {
             httpClient = new HttpClient();
             httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
+            _configHelper = new ConfigHelper<GlobalConfigOptions>(ConfigHelper.CONFIG_DATA_FOLDER);
 
             InitializeComponent();
         }
@@ -269,6 +272,45 @@ namespace TallyLightObs
         private void TallyLightObserver_Load(object sender, EventArgs e)
         {
             Activate();
+
+            GlobalConfigOptions configOptions = _configHelper.LoadedOptions;
+
+            if (configOptions.RecentObserverFiles != null && configOptions.RecentObserverFiles.Count > 0)
+            {
+                loadRecentToolStripMenuItem.DropDownItems.AddRange(configOptions.RecentObserverFiles.ToArray());
+            }
+            else
+            {
+                loadRecentToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem("No recent files...")
+                {
+                    Enabled = false
+                });
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "json files (*.json)";
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                using (Stream fs = saveFileDialog.OpenFile())
+                {
+                    using (TextWriter writer = new StreamWriter(fs))
+                    {
+                        writer.WriteLine
+                    }
+                }
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
-
-using ProdHelper.Utils;
-using System.IO;
+﻿using System.IO;
+using TallyLightShared.ConfigUtils;
+using TallyLightShared.Utils;
 
 namespace ProdHelper
 {
@@ -10,13 +8,17 @@ namespace ProdHelper
     {
         public static void Intitialize()
         {
+            ConfigHelper<GlobalConfigOptions> config = new ConfigHelper<GlobalConfigOptions>("ProdHelperConfig.json");
+            GlobalConfigOptions options = config.LoadedOptions;
+
             string settingsFallback = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\Documents\\Overwatch\\Settings";
-            string? settingsFolder = Environment.GetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE);
+            string? settingsFolder = options.LastOverwatchConfigFolder;
 
             if (string.IsNullOrEmpty(settingsFolder))
             {
                 settingsFolder = settingsFallback;
-                Environment.SetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE, settingsFolder);
+                options.LastOverwatchConfigFolder = settingsFolder;
+                config.SaveConfig();
             }
 
             string[] templateFiles = new string[0];
@@ -33,7 +35,8 @@ namespace ProdHelper
                 if (!string.IsNullOrEmpty(input))
                 {
                     settingsFolder = input;
-                    Environment.SetEnvironmentVariable(Constants.OW_SETTINGS_VARIABLE, settingsFolder);
+                    options.LastOverwatchConfigFolder = settingsFolder;
+                    config.SaveConfig();
                 }
 
                 if (!Directory.Exists(settingsFolder))
